@@ -25,7 +25,6 @@ RUN pip install --no-cache-dir \
     "python-multipart==0.0.9"
 
 # Force fresh copy every time
-ADD https://worldtimeapi.org/api/timezone/UTC /tmp/bustcache
 COPY . .
 
 RUN python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('all-MiniLM-L6-v2')"
