@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /app
 
-ENV CACHE_BUST=5
+ENV CACHE_BUST=6
 
 COPY requirements.txt .
 
