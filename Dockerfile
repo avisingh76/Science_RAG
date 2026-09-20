@@ -8,17 +8,14 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /app
 
-ENV CACHE_BUST=4
+ENV CACHE_BUST=5
 
 COPY requirements.txt .
 
-# Install torch CPU-only first
 RUN pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cpu
 
-# Install all requirements
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Explicitly install packages that may be missed
 RUN pip install --no-cache-dir \
     "python-jose[cryptography]==3.3.0" \
     "passlib==1.7.4" \
@@ -27,9 +24,10 @@ RUN pip install --no-cache-dir \
     "rank-bm25==0.2.2" \
     "python-multipart==0.0.9"
 
+# Force fresh copy every time
+ARG BUILD_DATE=unknown
 COPY . .
 
-# Pre-download sentence-transformers model
 RUN python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('all-MiniLM-L6-v2')"
 
 EXPOSE 8000
