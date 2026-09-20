@@ -8,6 +8,8 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /app
 
+ENV CACHE_BUST=4
+
 COPY requirements.txt .
 
 # Install torch CPU-only first
