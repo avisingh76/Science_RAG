@@ -20,6 +20,10 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException, Request, UploadFile, File
+try:
+    import python_multipart  # noqa
+except ImportError:
+    pass
 from fastapi.middleware.cors import CORSMiddleware
 from jose import JWTError, jwt
 from passlib.context import CryptContext
@@ -389,8 +393,9 @@ async def ingest_pdf(request: Request, file: UploadFile = File(...)):
         raise HTTPException(status_code=400, detail="Only PDF files are accepted.")
     dest = PDF_DIR / file.filename
     try:
+        contents = await file.read()
         with open(dest, "wb") as f:
-            shutil.copyfileobj(file.file, f)
+            f.write(contents)
     except Exception:
         raise HTTPException(status_code=500, detail="Failed to save uploaded file.")
     try:
