@@ -94,7 +94,7 @@ async def init_db():
     async with engine.begin() as conn:
         await conn.execute(text("""
             CREATE TABLE IF NOT EXISTS users (
-                user_id    INTEGER PRIMARY KEY AUTOINCREMENT,
+                user_id    SERIAL PRIMARY KEY,
                 email      TEXT UNIQUE NOT NULL,
                 username   TEXT NOT NULL,
                 password   TEXT NOT NULL,
@@ -110,7 +110,7 @@ async def init_db():
         """))
         await conn.execute(text("""
             CREATE TABLE IF NOT EXISTS messages (
-                id         INTEGER PRIMARY KEY AUTOINCREMENT,
+                id         SERIAL PRIMARY KEY,
                 session_id TEXT,
                 role       TEXT,
                 content    TEXT,
