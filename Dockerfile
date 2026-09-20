@@ -13,16 +13,17 @@ COPY requirements.txt .
 # Install torch CPU-only first
 RUN pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cpu
 
-# Install all other requirements
+# Install all requirements
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Explicitly install auth packages to ensure they are not missed
+# Explicitly install packages that may be missed
 RUN pip install --no-cache-dir \
     "python-jose[cryptography]==3.3.0" \
     "passlib==1.7.4" \
     "argon2-cffi==23.1.0" \
     "pydantic[email]==2.9.2" \
-    "rank-bm25==0.2.2"
+    "rank-bm25==0.2.2" \
+    "python-multipart==0.0.9"
 
 COPY . .
 
