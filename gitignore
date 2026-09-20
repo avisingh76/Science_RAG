@@ -1,0 +1,29 @@
+# Environment
+.env
+*.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.Python
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Data files — uploaded to Railway Volume separately
+data/faiss_index.bin
+data/bm25_index.pkl
+data/chunks_meta.pkl
+data/metadata.db
+data/metadata.db-shm
+data/metadata.db-wal
+data/pdfs/
+
+# VS Code
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db

@@ -1,0 +1,4 @@
+# Streamlit frontend only — no ML packages needed
+streamlit==1.38.0
+requests==2.32.3
+python-dotenv==1.0.1
