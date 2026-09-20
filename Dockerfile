@@ -1,10 +1,5 @@
-# ── FastAPI Backend Dockerfile ─────────────────────────────────────────────
-# Optimized for Railway free tier (512MB RAM)
-# CrossEncoder disabled to save RAM — only FAISS + BM25 used
-
 FROM python:3.12-slim
 
-# System dependencies for faiss-cpu and other packages
 RUN apt-get update && apt-get install -y \
     build-essential \
     gcc \
@@ -13,23 +8,27 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /app
 
-# Copy requirements first for better Docker layer caching
 COPY requirements.txt .
 
-# Install dependencies
-# torch CPU-only to save space and RAM
+# Install torch CPU-only first
 RUN pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cpu
+
+# Install all other requirements
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy project files
+# Explicitly install auth packages to ensure they are not missed
+RUN pip install --no-cache-dir \
+    "python-jose[cryptography]==3.3.0" \
+    "passlib==1.7.4" \
+    "argon2-cffi==23.1.0" \
+    "pydantic[email]==2.9.2" \
+    "rank-bm25==0.2.2"
+
 COPY . .
 
-# Pre-download sentence-transformers model at build time
-# so it doesn't download on first request (slow cold start)
+# Pre-download sentence-transformers model
 RUN python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('all-MiniLM-L6-v2')"
 
-# Expose port
 EXPOSE 8000
 
-# Start FastAPI
 CMD ["uvicorn", "api.main:app", "--host", "0.0.0.0", "--port", "8000"]
