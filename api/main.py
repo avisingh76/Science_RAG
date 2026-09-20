@@ -242,7 +242,7 @@ async def register(body: RegisterRequest):
     {"email": body.email, "username": body.username,
      "password": hashed, "ts": now},
 )
-user_id = result.scalar()
+    user_id = result.scalar()
     logger.info("New user registered: %s (id=%s)", body.email, user_id)
     return TokenResponse(
         access_token=_create_token(user_id, body.email),
