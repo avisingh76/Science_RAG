@@ -1,16 +1,11 @@
-# ── Streamlit Frontend Dockerfile ──────────────────────────────────────────
-
 FROM python:3.12-slim
 
 WORKDIR /app
 
-# Only install what Streamlit needs — no ML packages
 COPY requirements.streamlit.txt .
 RUN pip install --no-cache-dir -r requirements.streamlit.txt
 
-# Copy UI files only
 COPY ui/ ./ui/
-COPY .env.example .env.example
 
 EXPOSE 8501
 
