@@ -401,7 +401,7 @@ async def ingest_pdf(request: Request, file: UploadFile = File(...)):
     try:
         import sqlite3 as _sqlite3
         from sentence_transformers import SentenceTransformer
-        from pipeline.ingest import init_db as _init_db, ingest_pdf as _ingest_pdf, rebuild_faiss
+        from ingestion.ingest import init_db as _init_db, ingest_pdf as _ingest_pdf, rebuild_faiss
         from agent.tools import reload_index
         model = SentenceTransformer("all-MiniLM-L6-v2")
         conn  = _sqlite3.connect(str(BASE_DIR / "data" / "metadata.db"))
@@ -500,7 +500,7 @@ async def admin_delete_book(filename: str, request: Request):
     try:
         import sqlite3 as _sq
         from sentence_transformers import SentenceTransformer
-        from pipeline.ingest import rebuild_faiss
+        from ingestion.ingest import rebuild_faiss
         model = SentenceTransformer("all-MiniLM-L6-v2")
         conn2 = _sq.connect(str(BASE_DIR / "data" / "metadata.db"))
         rebuild_faiss(conn2, model)
