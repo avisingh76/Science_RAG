@@ -190,7 +190,7 @@ with st.sidebar:
                         f"{API_URL}/ingest",
                         headers=admin_headers(),
                         files={"file": (uploaded_file.name, uploaded_file, "application/pdf")},
-                        timeout=300,
+                        timeout=750,
                     )
                     r.raise_for_status()
                     st.success(f"✅ '{uploaded_file.name}' ingested!")
