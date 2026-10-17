@@ -1,0 +1,16 @@
+{
+  "n_questions": 30,
+  "n_completed": 0,
+  "error_rate": 1.0,
+  "rag_used_rate": 0.0,
+  "context_page_hit_rate": 0.0,
+  "citation_page_hit_rate": 0.0,
+  "citation_source_hit_rate": 0.0,
+  "latency_s": {
+    "mean": 0.0,
+    "p50": 0.0,
+    "p95": 0.0
+  },
+  "n_judged": 0,
+  "judge_model": "nvidia/nemotron-3.5-lightning:free"
+}
