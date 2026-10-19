@@ -52,6 +52,9 @@ Available tools:
 - wikipedia_search: Get real-world context and additional information.
 
 Rules:
+0. For any science question, your FIRST action must be to call rag_search.
+   The ONLY valid tool names are: rag_search, sql_query, wikipedia_search.
+   Never invent other tool names (such as "run" or "search").
 1. If the user mentions a specific book, use the 'source' parameter in rag_search.
 2. If no book is specified, search across all books.
 3. Always cite the source PDF and page number when referencing content.
