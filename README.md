@@ -1,6 +1,6 @@
 # 🔬 Science RAG — Agentic RAG Assistant
 
-An agentic Retrieval-Augmented Generation (RAG) assistant for science textbooks. Upload PDFs, ask questions, and get answers with source-page references, powered by LangGraph, FAISS + BM25, FastAPI and OpenRouter. **Live demo:** [add link]
+An agentic Retrieval-Augmented Generation (RAG) assistant for science textbooks. Upload PDFs, ask questions, and get answers with source-page references, powered by LangGraph, FAISS + BM25, FastAPI and OpenRouter. **Live demo:** https://pacific-celebration-production-09c6.up.railway.app/
 
 ## ✨ Features
 - **Multi-PDF support** with automatic index rebuild and hot reload after each upload
@@ -34,7 +34,7 @@ science_rag/
 
 ## 🚀 Local Setup
 ```bash
-git clone https://github.com/your-username/science-rag.git && cd science-rag
+git clone https://github.com/avisingh76/Science_RAG.git && cd science-rag
 pip install -r requirements.txt
 ```
 
