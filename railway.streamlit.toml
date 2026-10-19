@@ -1,11 +1,10 @@
-# railway.streamlit.toml — For Streamlit frontend service
-# Rename to railway.toml in the frontend service root
+# railway.streamlit.toml — Streamlit frontend service
+# In Railway: Streamlit service > Settings > Config-as-code path = railway.streamlit.toml
 
 [build]
 builder = "dockerfile"
 dockerfilePath = "Dockerfile.streamlit"
 
 [deploy]
-startCommand = "streamlit run ui/app.py --server.port $PORT --server.address 0.0.0.0 --server.headless true"
 restartPolicyType = "on_failure"
 restartPolicyMaxRetries = 3
