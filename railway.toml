@@ -1,10 +1,13 @@
-# railway.toml — Railway deployment config
-# Two services: api (FastAPI) and frontend (Streamlit)
+# railway.toml — FastAPI backend service (default config)
+# The Streamlit service uses railway.streamlit.toml instead
 
 [build]
 builder = "dockerfile"
+dockerfilePath = "Dockerfile"
 
 [deploy]
 startCommand = "uvicorn api.main:app --host 0.0.0.0 --port $PORT"
+healthcheckPath = "/health"
+healthcheckTimeout = 120
 restartPolicyType = "on_failure"
 restartPolicyMaxRetries = 3
